@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>CPU Information</h1>
+<table>
+    <thead>
+       <tr>
+         <th>ID</th> 
+         <th>Timestamp</th>
+          <th>Target</th>
+          <th>Percents</th>
+       </tr>
+    </thead>
+    
+    <tbody>
+       {% for row in cpu_stats %}
+          <tr>
+             <td>{{ row.id }}</td> 
+             <td>{{ row.timestamp }}</td>
+             <td>{{ row.target }}</td>
+             <td>{{ row.percents }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+ </table>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ title }}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+        <h3>System Stats UI</h3>
+        <p> Current URL: <a href="{{ url_for(request.endpoint) }}">{{ url_for(request.endpoint) }}</p>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href = "{{ url_for('base_print.memory') }}">Memory</a></li>
+            <li><a href="/cpu">CPU</a></li>
+            <li><a href="/disk">Disk</a></li>
+            <li><a href="/network">Network</a></li>
+            <li><a href="/system">System</a></li>
+        </ul>
+        {% if url_for(request.endpoint) == "/" %}
+            <p>Please select a link from above.</p>
+        {% endif %}
+        
+        {%- for message in get_flashed_messages() %}
+            {{ message }}
+        {%- endfor %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

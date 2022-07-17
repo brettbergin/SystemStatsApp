@@ -1,0 +1,60 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Network Information</h1>
+<table>
+    <thead>
+       <tr>
+          <th>ID</th> 
+          <th>Timestamp</th>
+          <th>Target</th>
+          <th>Bytes Sent</th>
+          <th>Bytes Received</th>
+          <th>Packets Sent</th>
+          <th>Packets Received</th>
+          <th>Error Packets In</th>
+          <th>Error Packets Out</th>
+          <th>Dropped Packets In</th>
+          <th>Dropped Packets Out</th>
+       </tr>
+    </thead>
+    <tbody>
+       {% for row in network_stats %}
+          <tr>
+             <td>{{ row.id }}</td> 
+             <td>{{ row.timestamp }}</td>
+             <td>{{ row.target }}</td>
+             <td>{{ row.bytes_sent }}</td>
+             <td>{{ row.bytes_recvd }}</td>
+             <td>{{ row.packets_sent }}</td>
+             <td>{{ row.packets_recvd }}</td>
+             <td>{{ row.err_pkt_in }}</td>
+             <td>{{ row.err_pkt_out }}</td>
+             <td>{{ row.dropped_pkt_in }}</td>
+             <td>{{ row.dropped_pkt_out }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+</table>
+<br>
+<h3>Network IP Addresses</h3>
+<table>
+   <thead>
+      <tr>
+         <th>ID</th>
+         <th>Timestamp</th>
+         <th>Target</th>
+         <th>IP Addresses</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for row in network_ips %}
+         <tr>
+            <td>{{ row.id }}</td> 
+            <td>{{ row.timestamp }}</td>
+            <td>{{ row.target }}</td>
+            <td>{{ row.addresses }}</td>
+         </tr>
+      {% endfor %}
+   </tbody>
+</table>
+{% endblock %}

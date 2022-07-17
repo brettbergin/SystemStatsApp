@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>System Information</h1>
+<h3>System Users</h3>
+<table>
+    <thead>
+       <tr>
+          <th>ID</th> 
+          <th>Timestamp</th>
+          <th>Target</th>
+          <th>Started</th>
+          <th>Terminal</th>
+          <th>Username</th>
+       </tr>
+    </thead>
+    
+    <tbody>
+       {% for row in system_users %}
+          <tr>
+             <td>{{ row.id }}</td> 
+             <td>{{ row.timestamp }}</td>
+             <td>{{ row.target }}</td>
+             <td>{{ row.started }}</td>
+             <td>{{ row.terminal }}</td>
+             <td>{{ row.username }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+ </table>
+ <br>
+ <h3>System Uptimes</h3>
+ <table>
+    <thead>
+       <tr>
+          <th>ID</th> 
+          <th>Timestamp</th>
+          <th>Target</th>
+          <th>Uptime</th>
+       </tr>
+    </thead>
+    <tbody>
+       {% for row in system_uptime %}
+          <tr>
+             <td>{{ row.id }}</td> 
+             <td>{{ row.timestamp }}</td>
+             <td>{{ row.target }}</td>
+             <td>{{ row.uptime }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+ </table>
+ <br>
+ <h3>Operating Systems</h3>
+ <table>
+    <thead>
+       <tr>
+          <th>ID</th> 
+          <th>Timestamp</th>
+          <th>Target</th>
+          <th>Operating System</th>
+       </tr>
+    </thead>
+    <tbody>
+       {% for row in system_os %}
+          <tr>
+             <td>{{ row.id }}</td> 
+             <td>{{ row.timestamp }}</td>
+             <td>{{ row.target }}</td>
+             <td>{{ row.opersys }}</td>
+          </tr>
+       {% endfor %}
+    </tbody>
+ </table>
+{% endblock %}
