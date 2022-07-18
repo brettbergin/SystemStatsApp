@@ -10,6 +10,7 @@ class NetworkInfo(db.Model):
 
     id = db.Column(db.String(36), default=lambda: str(uuid.uuid4()), primary_key=True)
     timestamp = db.Column(db.DateTime, nullable=False)
+    report_id = db.Column(db.String(36), nullable=False)
     target = db.Column(db.String(255), nullable=False)
     bytes_sent = db.Column(db.String(20), nullable=False)
     bytes_recvd = db.Column(db.String(20), nullable=False)
@@ -29,6 +30,7 @@ class NetworkIp(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, nullable=False)
+    report_id = db.Column(db.String(36), nullable=False)
     target = db.Column(db.String(255), nullable=False)
     addresses = db.Column(db.String(255), nullable=False)
 

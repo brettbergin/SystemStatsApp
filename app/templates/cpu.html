@@ -1,13 +1,14 @@
 {% extends "index.html" %}
 {% block content %}
-<h1>CPU Information</h1>
+<h1>Agent CPU Information</h1>
 <table>
     <thead>
        <tr>
          <th>ID</th> 
          <th>Timestamp</th>
-          <th>Target</th>
-          <th>Percents</th>
+         <th>Report ID</th>
+         <th>Target</th>
+         <th>Percents</th>
        </tr>
     </thead>
     
@@ -16,6 +17,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
+             <td>{{ row.report_id }}</td>
              <td>{{ row.target }}</td>
              <td>{{ row.percents }}</td>
           </tr>

@@ -1,12 +1,13 @@
 {% extends "index.html" %}
 {% block content %}
-<h1>System Information</h1>
+<h1>Agent System Information</h1>
 <h3>System Users</h3>
 <table>
     <thead>
        <tr>
-          <th>ID</th> 
+          <th>ID</th>
           <th>Timestamp</th>
+          <th>Report ID</th>
           <th>Target</th>
           <th>Started</th>
           <th>Terminal</th>
@@ -19,6 +20,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
+             <td>{{ row.report_id }}</td>
              <td>{{ row.target }}</td>
              <td>{{ row.started }}</td>
              <td>{{ row.terminal }}</td>
@@ -34,6 +36,7 @@
        <tr>
           <th>ID</th> 
           <th>Timestamp</th>
+          <th>Report ID</th>
           <th>Target</th>
           <th>Uptime</th>
        </tr>
@@ -41,8 +44,9 @@
     <tbody>
        {% for row in system_uptime %}
           <tr>
-             <td>{{ row.id }}</td> 
+             <td>{{ row.id }}</td>
              <td>{{ row.timestamp }}</td>
+             <td>{{ row.report_id }}</td> 
              <td>{{ row.target }}</td>
              <td>{{ row.uptime }}</td>
           </tr>
@@ -56,6 +60,7 @@
        <tr>
           <th>ID</th> 
           <th>Timestamp</th>
+          <th>Report ID</th>
           <th>Target</th>
           <th>Operating System</th>
        </tr>
@@ -65,6 +70,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
+             <td>{{ row.report_id }}</td>
              <td>{{ row.target }}</td>
              <td>{{ row.opersys }}</td>
           </tr>

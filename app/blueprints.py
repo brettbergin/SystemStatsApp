@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 
+from flask import request
 from flask import Blueprint
 from flask import render_template
+from flask import abort
 
+from app.extensions import db
 from app.models.memory import Memory
 from app.models.cpu import CPU
 from app.models.disk import Disk
+
+from app.models.reports import UserReports
 from app.models.network import NetworkInfo, NetworkIp
 from app.models.system import SystemUser, SystemUptime, SystemOper
 
@@ -16,6 +21,14 @@ BasePrint = Blueprint("base_print", __name__)
 @BasePrint.route("/", methods=["GET"])
 def home():
     return render_template("index.html", title="Home"), 200
+
+
+@BasePrint.route("/reports", methods=["GET"])
+def reports():
+    reports = UserReports.query.all()
+
+    return render_template(
+        "reports.html", title="Reports", reports=reports), 200
 
 
 @BasePrint.route("/memory", methods=["GET"])
@@ -59,3 +72,28 @@ def system():
         "system.html", title="System", 
         system_users=system_users, system_uptime=system_uptime,
         system_os=system_os), 200
+
+
+@BasePrint.route("/report/details", methods=["GET"])
+def report_details():
+    report_id = request.args["report_id"]
+    
+    user_report = UserReports.query.filter_by(report_id=report_id).first()
+    if not user_report:
+        return abort(404)
+
+    disk_data = Disk.query.filter_by(report_id = report_id).all()
+    cpu_data = CPU.query.filter_by(report_id = report_id).all()
+    memory_data = Memory.query.filter_by(report_id = report_id).all()
+    network_info_data = NetworkInfo.query.filter_by(report_id = report_id).all()
+    network_ip_data = NetworkIp.query.filter_by(report_id = report_id).all()
+    system_uptime_data = SystemUptime.query.filter_by(report_id = report_id).all()
+    system_user_data = SystemUser.query.filter_by(report_id = report_id).all()
+    system_os_data = SystemOper.query.filter_by(report_id = report_id).all()
+
+
+    return render_template("report_details.html", title="Report Details",
+        disk_data=disk_data, cpu_data=cpu_data, memory_data=memory_data,
+        network_info_data=network_info_data, network_ip_data=network_ip_data, 
+        system_uptime_data=system_uptime_data, system_user_data=system_user_data,
+        system_os_data=system_os_data), 200
