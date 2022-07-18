@@ -23,7 +23,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
-             <td>{{ row.report_id }}</td>
+             <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
              <td>{{ row.target }}</td>
              <td>{{ row.bytes_sent }}</td>
              <td>{{ row.bytes_recvd }}</td>
@@ -54,7 +54,7 @@
          <tr>
             <td>{{ row.id }}</td> 
             <td>{{ row.timestamp }}</td>
-            <td>{{ row.report_id }}</td>
+            <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
             <td>{{ row.target }}</td>
             <td>{{ row.addresses }}</td>
          </tr>

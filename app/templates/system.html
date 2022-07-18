@@ -20,7 +20,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
-             <td>{{ row.report_id }}</td>
+             <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
              <td>{{ row.target }}</td>
              <td>{{ row.started }}</td>
              <td>{{ row.terminal }}</td>
@@ -46,7 +46,7 @@
           <tr>
              <td>{{ row.id }}</td>
              <td>{{ row.timestamp }}</td>
-             <td>{{ row.report_id }}</td> 
+             <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
              <td>{{ row.target }}</td>
              <td>{{ row.uptime }}</td>
           </tr>
@@ -70,7 +70,7 @@
           <tr>
              <td>{{ row.id }}</td> 
              <td>{{ row.timestamp }}</td>
-             <td>{{ row.report_id }}</td>
+             <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
              <td>{{ row.target }}</td>
              <td>{{ row.opersys }}</td>
           </tr>
