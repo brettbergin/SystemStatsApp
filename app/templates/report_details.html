@@ -247,4 +247,62 @@
       </tbody>
    </table>
 </div>
+<div>
+   <h1>CPU Processes</h1>
+   <table>
+      <thead>
+         <tr>
+            <th>Timestamp</th>
+            <th>Target</th>
+            <th>Name</th>
+            <th>PID</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Create Time</th>
+            <th>CLI</th>
+            <th>Executable</th>
+            <th>CPU Utilization</th>
+            <th>Memory Info</th>
+            <th>Open Files</th>
+            <th>Network Connections</th>
+            <th>Threads</th>
+         </tr>
+      </thead>
+      <tbody>
+         {% for row in process_data %}
+            <tr>
+               <td>{{ row.timestamp }}</td>
+               <td>{{ row.target }}</td>
+               <td>{{ row.name }}</td>
+               <td>{{ row.pid }}</td>
+               <td>{{ row.user }}</td>
+               <td>{{ row.status }}</td>
+               <td>{{ row.create_time }}</td>
+               
+               {% if row.cli %}
+                  {% if row.cli|length > 25 %}
+                     <td>{{ row.cli[-25:] }}</td>
+                  {% endif %}
+               {% else %}
+                 <td>{{ row.cli }}</td>
+               {% endif %} 
+
+               {% if row.executable %}                  
+                  {% if row.executable|length > 25 %}
+                     <td>{{ row.executable[-25:] }}</td>
+                  {% endif %}
+               {% else %}
+               <td>{{ row.executable }}</td>
+               {% endif %}
+
+               <td>{{ row.cpu_percent }}</td>
+               <td>{{ row.mem_info }}</td>
+               <td>{{ row.open_files }}</td>
+               <td>{{ row.connections }}</td>
+               <td>{{ row.threads }}</td>
+            </tr>
+         {% endfor %}
+      </tbody>
+   </table>
+</div>
 {% endblock %}

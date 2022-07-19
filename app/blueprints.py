@@ -9,7 +9,7 @@ from app.extensions import db
 from app.models.memory import Memory
 from app.models.cpu import CPU
 from app.models.disk import Disk
-
+from app.models.process import Process
 from app.models.reports import UserReports
 from app.models.network import NetworkInfo, NetworkIp
 from app.models.system import SystemUser, SystemUptime, SystemOper
@@ -90,10 +90,11 @@ def report_details():
     system_uptime_data = SystemUptime.query.filter_by(report_id = report_id).all()
     system_user_data = SystemUser.query.filter_by(report_id = report_id).all()
     system_os_data = SystemOper.query.filter_by(report_id = report_id).all()
+    process_data = Process.query.filter_by(report_id = report_id).all()
 
 
     return render_template("report_details.html", title="Report Details",
         disk_data=disk_data, cpu_data=cpu_data, memory_data=memory_data,
         network_info_data=network_info_data, network_ip_data=network_ip_data, 
         system_uptime_data=system_uptime_data, system_user_data=system_user_data,
-        system_os_data=system_os_data), 200
+        system_os_data=system_os_data, process_data=process_data), 200
