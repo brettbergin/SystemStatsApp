@@ -10,14 +10,13 @@ from app.blueprints import BasePrint
 
 
 class InitApp(object):
-
     def __init__(self):
         self.config = Config()
-        
+
         self.db_url = f"mysql://{self.config.db_username}:{self.config.db_password}@{self.config.db_host}:{self.config.db_port}/{self.config.db_name}"
-        
+
         self.this_app_secret = self.config.flask_app_secret
-        
+
         self.rate_limit_strategy = "fixed-window-elastic-expiry"
         self.rate_limit_frequency = "50000/day;2500/hour;100/minute"
 
@@ -36,7 +35,7 @@ class InitApp(object):
         self._internal_app.config["SECRET_KEY"] = self.this_app_secret
 
         self._internal_app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-        self._internal_app.config['SQLALCHEMY_DATABASE_URI'] = self.db_url
+        self._internal_app.config["SQLALCHEMY_DATABASE_URI"] = self.db_url
 
         self._register_extensions()
         self._register_blue_prints()
