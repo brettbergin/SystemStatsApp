@@ -6,7 +6,8 @@ from flask import Flask
 
 from app.config import Config
 from app.extensions import db
-from app.blueprints import BasePrint
+from app.blueprints.react import ReactPrint
+from app.blueprints.admin import AdminPrint
 
 
 class InitApp(object):
@@ -26,7 +27,8 @@ class InitApp(object):
         db.init_app(self._internal_app)
 
     def _register_blue_prints(self):
-        self._internal_app.register_blueprint(BasePrint)
+        self._internal_app.register_blueprint(AdminPrint)
+        self._internal_app.register_blueprint(ReactPrint)
 
     def create_app(self):
         self._internal_app = Flask(__name__)

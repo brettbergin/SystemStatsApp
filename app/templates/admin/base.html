@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{ title }}</title>
+        <style>
+            table, th, td {
+              border: 1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>System Stats UI</h3>
+
+        <table>
+            <td><a href="{{ url_for('base_print.home') }}">Home</a></td>
+            <td><a href="{{ url_for('base_print.reports') }}">Reports</a></td>
+            <td><a href="{{ url_for('base_print.memory') }}">Memory</a</td>
+            <td><a href="{{ url_for('base_print.cpu') }}">CPU</a></td>
+            <td><a href="{{ url_for('base_print.disk') }}">Disk</a></td>
+            <td><a href="{{ url_for('base_print.network') }}">Network</a></td>
+            <td><a href="{{ url_for('base_print.system') }}">System</a></td>
+        </table>
+        
+        {%- for message in get_flashed_messages() %}
+            {{ message }}
+        {%- endfor %}
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

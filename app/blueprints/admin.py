@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from pydoc import cli
 from flask import request
 from flask import Blueprint
 from flask import render_template
@@ -15,22 +16,22 @@ from app.models.network import NetworkInfo, NetworkIp
 from app.models.system import SystemUser, SystemUptime, SystemOper
 
 
-BasePrint = Blueprint("base_print", __name__)
+AdminPrint = Blueprint("base_print", __name__, template_folder='../templates/admin/', url_prefix="/admin")
 
 
-@BasePrint.route("/", methods=["GET"])
+@AdminPrint.route("/", methods=["GET"])
 def home():
-    return render_template("index.html", title="Home"), 200
+    return render_template("base.html", title="Home"), 200
 
 
-@BasePrint.route("/reports", methods=["GET"])
+@AdminPrint.route("/reports", methods=["GET"])
 def reports():
     reports = UserReports.query.all()
 
     return render_template("reports.html", title="Reports", reports=reports), 200
 
 
-@BasePrint.route("/memory", methods=["GET"])
+@AdminPrint.route("/memory", methods=["GET"])
 def memory():
     memory_stats = Memory.query.all()
     return (
@@ -39,19 +40,19 @@ def memory():
     )
 
 
-@BasePrint.route("/cpu", methods=["GET"])
+@AdminPrint.route("/cpu", methods=["GET"])
 def cpu():
     cpu_stats = CPU.query.all()
     return render_template("cpu.html", title="CPU", cpu_stats=cpu_stats), 200
 
 
-@BasePrint.route("/disk", methods=["GET"])
+@AdminPrint.route("/disk", methods=["GET"])
 def disk():
     disk_stats = Disk.query.all()
     return render_template("disk.html", title="Disk", disk_stats=disk_stats), 200
 
 
-@BasePrint.route("/network", methods=["GET"])
+@AdminPrint.route("/network", methods=["GET"])
 def network():
     network_stats = NetworkInfo.query.all()
     network_ips = NetworkIp.query.all()
@@ -67,7 +68,7 @@ def network():
     )
 
 
-@BasePrint.route("/system", methods=["GET"])
+@AdminPrint.route("/system", methods=["GET"])
 def system():
     system_users = SystemUser.query.all()
     system_uptime = SystemUptime.query.all()
@@ -85,7 +86,7 @@ def system():
     )
 
 
-@BasePrint.route("/report/details", methods=["GET"])
+@AdminPrint.route("/report/details", methods=["GET"])
 def report_details():
     report_id = request.args["report_id"]
 

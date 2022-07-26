@@ -1,6 +1,6 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
 {% block content %}
-<h1>Agent Disk Information</h1>
+<h1>Agent Memory Information</h1>
 <table>
     <thead>
        <tr>
@@ -8,26 +8,32 @@
           <th>Timestamp</th>
           <th>Report ID</th>
           <th>Target</th>
-          <th>Mount Point</th>
+          <th>Active</th>
+          <th>Available</th>
+          <th>Free</th>
+          <th>Inactive</th>
+          <th>Percent</th>
           <th>Total</th>
           <th>Used</th>
-          <th>Free</th>
-          <th>Percent</th>
+          <th>Wired</th>
        </tr>
     </thead>
     
     <tbody>
-       {% for row in disk_stats %}
+       {% for row in memory_stats %}
           <tr>
              <td>{{ row.id }}</td>
              <td>{{ row.timestamp }}</td>
              <td><a href="{{ url_for('base_print.report_details', report_id=row.report_id) }}">{{ row.report_id }}</a></td>
              <td>{{ row.target }}</td>
-             <td>{{ row.mount_point }}</td>
+             <td>{{ row.active }}</td>
+             <td>{{ row.available }}</td>
+             <td>{{ row.free }}</td>
+             <td>{{ row.inactive }}</td>
+             <td>{{ row.percent }}</td>
              <td>{{ row.total }}</td>
              <td>{{ row.used }}</td>
-             <td>{{ row.free }}</td>
-             <td>{{ row.percent }}</td>
+             <td>{{ row.wired }}</td>
           </tr>
        {% endfor %}
     </tbody>
