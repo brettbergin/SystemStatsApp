@@ -25,8 +25,8 @@ export default function Login() {
       const access_token = resp.data.access_token
       const refresh_token = resp.data.refresh_token
       
-      cookies.set('access_token', access_token, {path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: false});
-      cookies.set('refresh_token', refresh_token, {path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: false});
+      cookies.set('access_token', access_token, {path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: true});
+      cookies.set('refresh_token', refresh_token, {path: '/', maxAge: 60 * 60 * 24 * 365, sameSite: true});
       setIsLoggedIn(true);
     }
   
