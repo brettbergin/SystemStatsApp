@@ -29,55 +29,41 @@ export default function NetworkInfo() {
     }, [])
   
     return (
-      <html>    
-        <head>
-          <meta charset="utf-8"/>
-          <title>Network Info Page.</title>
-        </head>
-        <body>
-          <div>
-            <h2>NetworkInfo</h2>
-          </div>
-          <div>
-            <p>Here is the number of results: {itemRows.length}</p>
-            <table border="true">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Report ID</th>
-                  <th>Target</th>
-                  <th>bytes_sent</th>
-                  <th>bytes_recvd</th>
-                  <th>packets_sent</th>
-                  <th>packets_recvd</th>
-                  <th>err_pkt_in</th>
-                  <th>err_pkt_out</th>
-                  <th>dropped_pkt_in</th>
-                  <th>dropped_pkt_out</th>
-                </tr>
-              </thead>
-              <tbody style={{ textAlign: "center"}}>
-                {itemRows.length && itemRows.map(({id, report_id, target, bytes_sent, bytes_recvd, 
-                  packets_sent, packets_recvd, err_pkt_in, err_pkt_out, dropped_pkt_in, dropped_pkt_out}) =>
-                <tr key={id}>
-                    <td>{id}</td>
-                    <td>{report_id}</td>
-                    <td>{target}</td>
-                    <td>{bytes_sent}</td>
-                    <td>{bytes_recvd}</td>
-                    <td>{packets_sent}</td>
-                    <td>{packets_recvd}</td>
-                    <td>{err_pkt_in}</td>
-                    <td>{err_pkt_out}</td>
-                    <td>{dropped_pkt_in}</td>
-                    <td>{dropped_pkt_out}</td>
-                </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </body>
-      </html>
+      <><div>
+        <h2>NetworkInfo</h2>
+      </div>
+      <div>
+        <p>Here is the number of results: {itemRows.length}</p>
+        <table border="true">
+          <thead>
+            <tr>
+              <th>Target</th>
+              <th>bytes_sent</th>
+              <th>bytes_recvd</th>
+              <th>packets_sent</th>
+              <th>packets_recvd</th>
+              <th>err_pkt_in</th>
+              <th>err_pkt_out</th>
+              <th>dropped_pkt_in</th>
+              <th>dropped_pkt_out</th>
+            </tr>
+          </thead>
+          <tbody style={{ textAlign: "center" }}>
+            {itemRows.length && itemRows.map(({ id, target, bytes_sent, bytes_recvd, packets_sent, packets_recvd, err_pkt_in, err_pkt_out, dropped_pkt_in, dropped_pkt_out }) => <tr key={id}>
+              <td>{target}</td>
+              <td>{bytes_sent}</td>
+              <td>{bytes_recvd}</td>
+              <td>{packets_sent}</td>
+              <td>{packets_recvd}</td>
+              <td>{err_pkt_in}</td>
+              <td>{err_pkt_out}</td>
+              <td>{dropped_pkt_in}</td>
+              <td>{dropped_pkt_out}</td>
+            </tr>
+            )}
+          </tbody>
+        </table>
+      </div></>
     );
   }
   
